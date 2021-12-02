@@ -1,0 +1,10 @@
+opencv-python
+matplotlib
+pandas
+scipy-stack
+scikit-image
+pybalu
+seaborn
+python_speech_features
+autopep8
+spotipy
