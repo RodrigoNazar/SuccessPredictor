@@ -11,5 +11,7 @@ Advanced Optimization in Electrical Engineering
 
 ## Source code
 
-In the '''./src''' folder.
+In the `./src` folder.
+
+	~~The world isn't flat.~~
 
