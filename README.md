@@ -1,11 +1,15 @@
 # Success Predictor
 
+Implementation of the algorithm shown in the article "Modelo de Predicción de Éxito de Canciones Basado en Descriptores de Audio".
+
+---
+By Rodrigo Nazar & Ignacio Barrera
+Pontificia Universidad Católica de Chile
+Advanced Optimization in Electrical Engineering
+Álvaro Lorca - Denise Cariaga
+2020 - 2
+
 ## Source code
 
-## Comentarios
-
-## Optimizacion
-
-### Drive
-https://drive.google.com/drive/folders/1N63boWb4v69u9w4Ag1wEZWA6jbjf4stg?usp=sharing
+In the '''./src''' folder.
 
