@@ -2,14 +2,8 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import json
 
-# with open('./CREDENTIALS.txt', 'r') as f:
-#     credentials = json.loads(f.read())
-
-credentials = {
-  "SPOTIPY_CLIENT_ID": "1bd287021f34474799d1e87d14bd77b8",
-  "SPOTIPY_CLIENT_SECRET": "ad02f5ddb016462f915637070a3b89df",
-  "SPOTIPY_REDIRECT_URI": "http://localhost:8080"
-}
+with open('./CREDENTIALS.txt', 'r') as f:
+    credentials = json.loads(f.read())
 
 
 scope = "user-library-read"
