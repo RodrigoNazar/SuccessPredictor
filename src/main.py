@@ -10,6 +10,8 @@ import numpy as np
 
 import utils.classifier_strategies as c
 from utils.utils import LoadData, SplitAndProcessData, saveFeatures
+from utils.classifier_strategies import classifier_tests
+
 
 from utils.spotipy_utils import (fetch_playlist,
                                  process_spotify_data,
@@ -30,6 +32,8 @@ from utils.temporal_features import (centroid,
 from utils.frequential_features import (spectral_centroid,
                                         spectral_slope,
                                         spectral_flatness)
+
+
 FEATUES = {
     'centroid': centroid,
     'mean': mean,
@@ -76,9 +80,16 @@ PLAYLISTS_ID = [
     '37i9dQZF1DXc6IFF23C9jj'  # 2010
 ]
 
+with open('./CREDENTIALS.txt', 'r') as f:
+    credentials = f.read()
+    credentials = json.loads(credentials)
+
+
 '''
 Rutina principal del Algoritmo de procesamiento
 '''
+
+
 def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
          features=FEATURES_METHODS, debug=DEBUG):
 
@@ -103,6 +114,13 @@ def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
 
     # Guardamos los datos de las features
     saveFeatures('features_2010', data, songs_train, features=features)
+
+    classifier_tests(
+                    X_train=[],
+                    labels_train=[],
+                    X_test=[],
+                    labels_test=[]
+                )
 
     print('\n\t> Tiempo de ejecucion del algoritmo: ', (datetime.datetime.now() - start))
 
