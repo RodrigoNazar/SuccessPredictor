@@ -116,10 +116,10 @@ def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
     saveFeatures('features_2010', data, songs_train, features=features)
 
     classifier_tests(
-                    X_train=[],
-                    labels_train=[],
-                    X_test=[],
-                    labels_test=[]
+                    X_train=data_train,
+                    labels_train=[str(i) for i in data_train],
+                    X_test=data_train,
+                    labels_test=[str(i) for i in data_train]
                 )
 
     print('\n\t> Tiempo de ejecucion del algoritmo: ', (datetime.datetime.now() - start))
