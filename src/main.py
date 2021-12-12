@@ -103,6 +103,9 @@ def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
 
     data_train_spotify, songs_train = spotify_data_matrix(data, debug=debug)
 
+    print(type(data_train_spotify))
+    print(type(songs_train))
+
     data_train = fetch_track_data(data_train_spotify, playlists_id[5], debug)
 
     data_train = parse_track_data(data_train, playlists_id[5], debug)
