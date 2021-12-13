@@ -9,7 +9,7 @@ from python_speech_features import mfcc
 import numpy as np
 
 import utils.classifier_strategies as c
-from utils.utils import LoadData, SplitAndProcessData, saveFeatures
+from utils.utils import LoadData, SplitAndProcessData, saveFeatures, split_data
 from utils.classifier_strategies import classifier_tests
 
 
@@ -62,7 +62,7 @@ FEATURES_NAMES = ['centroid', 'mean', 'var', 'skewness', 'kurtosis', 'RMS',
 ## PARAMETROS A CAMBIAR
 
 # Features a utilizar
-FEATURES_METHODS = [FEATUES[i] for i in FEATURES_NAMES][:-1]
+FEATURES_METHODS = [FEATUES[i] for i in FEATURES_NAMES]
 
 # Despliegue de prints para debug
 DEBUG = False
@@ -101,22 +101,24 @@ def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
     data = fetch_playlist(playlists_id[1], debug=debug)[:50]
     data = process_spotify_data(data, debug=debug)
 
-    data_train_spotify, songs_train = spotify_data_matrix(data, debug=debug)
+    songs_data_spotify, songs = spotify_data_matrix(data, debug=debug)
 
-    print(type(data_train_spotify))
-    print(type(songs_train))
+    songs_data = fetch_track_data(songs_data_spotify, playlists_id[5], debug)
 
-    data_train = fetch_track_data(data_train_spotify, playlists_id[5], debug)
+    songs_data = parse_track_data(songs_data, playlists_id[5], debug)
 
-    data_train = parse_track_data(data_train, playlists_id[5], debug)
+    split_data(songs_data, .8, .1)
 
-    data_train = SplitAndProcessData(data_train, features=features)
+    sorted(songs_data, key=lambda song: song[0])
+
+
+    data_train = SplitAndProcessData(songs_data, features=features)
     data_train = np.array(data_train)[0, :, :]
 
-    data = np.column_stack((data_train_spotify.copy(), data_train.copy())).T.tolist()
+    data = np.column_stack((songs_data_spotify.copy(), data_train.copy())).T.tolist()
 
     # Guardamos los datos de las features
-    saveFeatures('features_2010', data, songs_train, features=features)
+    saveFeatures('features_2010', data, songs, features=features)
 
     classifier_tests(
                     X_train=data_train,

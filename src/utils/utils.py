@@ -34,7 +34,7 @@ def SplitAndProcessData(data, features=[], debug=False):
         # temporal features
         feature_train = [feature(elem) for feature in features
                          if 'spectral' not in feature.__name__
-                         # and 'mfcc' not in feature.__name__
+                         and 'mfcc' not in feature.__name__
                          ]
 
         # Freq features
@@ -54,16 +54,16 @@ def SplitAndProcessData(data, features=[], debug=False):
         feature_train += [feature(xf, yf) for feature in features
                           if 'spectral' in feature.__name__]
 
-        # if 'mfcc' in [feature.__name__ for feature in features]:
-        #     # MFCC features
-        #     mfcc_features = [feature(elem, samplerate=samplerate,
-        #                              nfft=512)
-        #                      for feature in features
-        #                      if 'mfcc' in feature.__name__][0]
-        #
-        #     mfcc_features = mfcc_features.sum(axis=0).tolist()
-        #
-        #     feature_train += mfcc_features
+        if 'mfcc' in [feature.__name__ for feature in features]:
+            # MFCC features
+            mfcc_features = [feature(elem, samplerate=samplerate,
+                                     nfft=512)
+                             for feature in features
+                             if 'mfcc' in feature.__name__][0]
+
+            mfcc_features = mfcc_features.sum(axis=0).tolist()
+
+            feature_train += mfcc_features
 
         # Process the data
         X_train.append(feature_train)
@@ -219,3 +219,7 @@ def saveFeatures(name, X_train, labels_train, features=[], debug=True):
         print('Features actualizadas!')
         print('labels_train.shape', 'X_train.shape')
         print(labels_train.shape, X_train.shape)
+
+
+def split_data(songs_data, p_train, p_val):
+    print(songs_data, p_train, p_val)
