@@ -111,7 +111,6 @@ def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
 
     sorted(songs_data, key=lambda song: song[0])
 
-
     data_train = SplitAndProcessData(songs_data, features=features)
     data_train = np.array(data_train)[0, :, :]
 
