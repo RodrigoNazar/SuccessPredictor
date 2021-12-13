@@ -107,12 +107,13 @@ def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
 
     songs_data = parse_track_data(songs_data, playlists_id[5], debug)
 
-    split_data(songs_data, .8, .1)
+    songs_data = SplitAndProcessData(songs_data, features=features)
 
     sorted(songs_data, key=lambda song: song[0])
 
-    data_train = SplitAndProcessData(songs_data, features=features)
-    data_train = np.array(data_train)[0, :, :]
+    split_data(songs_data, .8, .1)
+
+    data_train = np.array(songs_data)[0, :, :]
 
     data = np.column_stack((songs_data_spotify.copy(), data_train.copy())).T.tolist()
 

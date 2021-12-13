@@ -222,7 +222,10 @@ def saveFeatures(name, X_train, labels_train, features=[], debug=True):
 
 
 def split_data(songs_data, p_train, p_val):
-    print(songs_data, p_train, p_val)
 
-    for i in songs_data:
-        print(i)
+    print(len(songs_data))
+    print(type(songs_data[0]))
+    print(len(songs_data[0]))
+
+    for j, i in enumerate(songs_data):
+        print(j, i.shape)
