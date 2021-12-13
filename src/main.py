@@ -115,10 +115,14 @@ def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
 
     data_train = np.array(songs_data)[0, :, :]
 
-    data = np.column_stack((songs_data_spotify.copy(), data_train.copy())).T.tolist()
+    print(songs_data_spotify[:42].shape, data_train[:42].shape)
+    print(songs_data_spotify[:42].shape, data_train[:42].shape)
+    print(songs_data_spotify[:42].shape, data_train[:42].shape)
+
+    data = np.column_stack((songs_data_spotify[:42].copy(), data_train[:42].copy())).T.tolist()
 
     # Guardamos los datos de las features
-    saveFeatures('features_2010', data, songs, features=features)
+    # saveFeatures('features_2010', data, songs, features=features)
 
     classifier_tests(
                     X_train=data_train,
