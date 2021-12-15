@@ -99,23 +99,41 @@ def main(data_path=DATA_PATH, playlists_id=PLAYLISTS_ID,
           [i.__name__ for i in features])
 
     data = fetch_playlist(playlists_id[1], debug=debug)[:50]
+    ('data = fetch_playlist(playlists_id[1], debug=debug)[:50]')
+    print(data)
     data = process_spotify_data(data, debug=debug)
+    ('data = process_spotify_data(data, debug=debug)')
+    print(data)
 
     songs_data_spotify, songs = spotify_data_matrix(data, debug=debug)
+    ('songs_data_spotify, songs = spotify_data_matrix(data, debug=debug)')
+    print(songs_data_spotify)
 
     songs_data = fetch_track_data(songs_data_spotify, playlists_id[5], debug)
+    ('songs_data = fetch_track_data(songs_data_spotify, playlists_id[5], debug)')
+    print(songs_data)
 
     songs_data = parse_track_data(songs_data, playlists_id[5], debug)
+    ('songs_data = parse_track_data(songs_data, playlists_id[5], debug)')
+    print(songs_data)
 
     songs_data = SplitAndProcessData(songs_data, features=features)
+    ('songs_data = SplitAndProcessData(songs_data, features=features)')
+    print(songs_data)
 
     sorted(songs_data, key=lambda song: song[0])
+    ('sorted(songs_data, key=lambda song: song[0])')
 
     split_data(songs_data, .8, .1)
+    ('split_data(songs_data, .8, .1)')
 
     data_train = np.array(songs_data)[0, :, :]
+    ('data_train = np.array(songs_data)[0, :, :]')
+    print(data_train)
 
     print(songs_data_spotify[:42].shape, data_train[:42].shape)
+    ('print(songs_data_spotify[:42].shape, data_train[:42].shape)')
+    print(print(songs_data_spotify[:42].shape, data_train[:42].shape))
     print(songs_data_spotify[:42].shape, data_train[:42].shape)
     print(songs_data_spotify[:42].shape, data_train[:42].shape)
 

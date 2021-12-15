@@ -32,6 +32,11 @@ def fetch_playlist(playlists_id, credentials_path='./', debug=False):
 
     data = []
 
+
+
+
+
+
     for z, i in enumerate(results['items']):
         '''album, artists, available_markets, disc_number, duration_ms, episode,
         explicit, external_ids, external_urls, href, id, is_local, name, popularity,
